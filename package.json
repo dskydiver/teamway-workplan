@@ -1,0 +1,38 @@
+{
+  "name": "teamway-workplan",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "tsc",
+    "dev": "prisma migrate dev && nodemon src/index.ts",
+    "start": "cd src && prisma migrate deploy && node ../build/src/index.js"
+  },
+  "prisma": {
+    "seed": "ts-node prisma/seed.ts"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@prisma/client": "^5.11.0",
+    "fastify": "^4.26.2",
+    "prisma": "^5.11.0",
+    "zod": "^3.22.4"
+  },
+  "devDependencies": {
+    "@faker-js/faker": "^8.4.1",
+    "@fastify/swagger": "^8.14.0",
+    "@fastify/swagger-ui": "^3.0.0",
+    "@types/node": "^20.11.30",
+    "@types/swagger-schema-official": "^2.0.25",
+    "dotenv": "^16.4.5",
+    "fastify-type-provider-zod2": "^1.0.21",
+    "nodemon": "^3.1.0",
+    "pino": "^8.19.0",
+    "pino-pretty": "^11.0.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.3"
+  }
+}
