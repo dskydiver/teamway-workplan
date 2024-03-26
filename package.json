@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "tap --reporter=tap",
     "build": "tsc",
     "dev": "prisma migrate dev && nodemon src/index.ts",
     "start": "prisma migrate deploy && node build/src/index.js"
@@ -32,6 +32,7 @@
     "nodemon": "^3.1.0",
     "pino": "^8.19.0",
     "pino-pretty": "^11.0.0",
+    "tap": "^18.7.1",
     "ts-node": "^10.9.2",
     "typescript": "^5.4.3"
   }
