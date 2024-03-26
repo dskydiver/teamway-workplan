@@ -27,3 +27,8 @@ const start = async () => {
   await server.listen({ port: portDetail })
   logger.info(`server running on port ${portDetail}`)
 }
+
+start().catch((error) => {
+  logger.error(error)
+  process.exit(1)
+})
