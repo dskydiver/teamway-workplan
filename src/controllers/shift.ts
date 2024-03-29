@@ -54,11 +54,15 @@ export const createShift = async (
 ) => {
   const { workerId, shiftDate, shiftTime } = request.body
   try {
-    const shift = await shiftDal.createShift(workerId, shiftDate, shiftTime)
+    const shift = await shiftDal.createShift(
+      workerId,
+      new Date(shiftDate),
+      shiftTime
+    )
     return reply.send({ success: true, data: shift })
   } catch (error) {
     logger.debug({ error })
-    return reply.code(400).send({ error })
+    return reply.code(400).send({ error: 'Error creating shift' })
   }
 }
 

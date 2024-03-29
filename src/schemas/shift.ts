@@ -13,7 +13,7 @@ export type GetWorkerShiftParam = z.infer<typeof GET_WORKER_SHIFT_PARAM_SCHEMA>
 
 export const CREATE_SHIFT_SCHEMA = z.object({
   workerId: z.string().min(1),
-  shiftDate: z.date(),
+  shiftDate: z.string().refine((date) => new Date(date) instanceof Date),
   shiftTime: z.nativeEnum(ShiftTime),
 })
 export type CreateShiftSchema = z.infer<typeof CREATE_SHIFT_SCHEMA>
