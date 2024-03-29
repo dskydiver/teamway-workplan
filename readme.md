@@ -64,10 +64,10 @@ These instructions will get your copy of the project up and running on your loca
    ```
 
 8. Start the server:
-   `sh
- npm run dev
- `
-   Your server should now be running and accessible at http://localhost:3000.
+   ```sh
+   npm run dev
+   ```
+   Your server should now be running and accessible at http://localhost:5000.
 
 ## Running the Tests
 
