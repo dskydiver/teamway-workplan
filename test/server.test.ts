@@ -1,7 +1,7 @@
 import { test } from 'tap'
 import { build } from '../src/server'
 
-test('/', async (t) => {
+test('/', async (t: any) => {
   const app = await build()
 
   const response = await app.inject({
@@ -20,7 +20,7 @@ test('/', async (t) => {
   )
 })
 
-test('/workers', async (t) => {
+test('/workers', async (t: any) => {
   const app = await build()
 
   let response = await app.inject({
@@ -36,4 +36,36 @@ test('/workers', async (t) => {
     url: `/workers/${id}`,
   })
   t.equal(JSON.parse(response.body).data.id, id, 'returns worker by id')
+})
+
+// shift test
+test('/shifts', async (t: any) => {
+  const app = await build()
+  let response = await app.inject({
+    method: 'GET',
+    url: '/workers',
+  })
+  const worker_id = JSON.parse(response.body).data[0].id
+  response = await app.inject({
+    url: '/shifts',
+    method: 'POST',
+    headers: { ContentType: 'application/json' },
+    payload: {
+      workerId: worker_id,
+      shiftTime: 'First',
+      shiftDate: '2024-05-09',
+    },
+  })
+
+  t.equal(
+    JSON.parse(response.body).success,
+    true,
+    'Shfit is made successfully!'
+  )
+  response = await app.inject({
+    method: 'GET',
+    url: `/shifts/worker/${worker_id}`,
+  })
+  t.equal(JSON.parse(response.body).success, true, 'returns shift by worker_id')
+  console.log(response)
 })
